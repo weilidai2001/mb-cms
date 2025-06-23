@@ -34,9 +34,9 @@ const Carousel = ({
   return (
     <section
       aria-labelledby="products-listing"
-      className="max-w-5xl mx-auto mt-8"
+      className="max-w-[100vw] mx-auto mt-8"
     >
-      <div className="flex justify-between items-center max-w-[600px] mx-auto px-4">
+      <div className="flex justify-between items-center max-w-[400px] md:max-w-[600px] mx-auto px-4">
         <button
           className="bg-white/50 hover:bg-white p-2 rounded-full shadow-md z-10"
           onClick={scrollPrev}
@@ -78,13 +78,13 @@ const Carousel = ({
         </button>
       </div>
 
-      <div className="relative max-w-4xl mx-auto p-4">
+      <div className="relative max-w-[100vw] mx-auto py-4 lg:px-4">
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex -ml-4">
             {slides.map((slide, index) => {
               return (
                 <div
-                  className="relative min-w-0 flex-shrink-0 w-1/2 pl-4"
+                  className="relative min-w-0 flex-shrink-0 w-[300px] md:w-[400px] lg:w-[500px] pl-4"
                   key={index}
                 >
                   {React.cloneElement(slide, {
