@@ -15,7 +15,7 @@ export default function Header() {
         />
       </div>
       {/* Desktop Nav */}
-      <nav className="hidden md:flex gap-6 text-[16px] font-medium text-gray-700">
+      <nav className="hidden lg:flex gap-6 text-[16px] font-medium text-gray-700">
         <a href="#investing" className="hover:text-[#4ccfc1]">
           Investing
         </a>
@@ -35,7 +35,7 @@ export default function Header() {
           Support
         </a>
       </nav>
-      <div className="hidden md:flex gap-3 items-center">
+      <div className="hidden lg:flex gap-3 items-center">
         <button className="border border-gray-300 rounded-full px-4 py-1 font-semibold hover:bg-gray-100 transition">
           Log in
         </button>
@@ -44,7 +44,7 @@ export default function Header() {
         </button>
       </div>
       {/* Hamburger for md and below */}
-      <div className="md:hidden flex items-center">
+      <div className="lg:hidden flex items-center">
         <button
           className="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4ccfc1]"
           onClick={() => setMenuOpen((open) => !open)}
@@ -55,7 +55,7 @@ export default function Header() {
       </div>
       {/* Mobile Dropdown */}
       {menuOpen && (
-        <div className="absolute top-full left-0 w-full bg-white border-b shadow-md flex flex-col gap-2 px-6 py-4 md:hidden animate-fade-in z-50">
+        <div className="absolute top-full left-0 w-full bg-white border-b shadow-md flex flex-col gap-2 px-6 py-4 lg:hidden animate-fade-in z-50">
           <nav className="flex flex-col gap-3 text-[16px] font-medium text-gray-700">
             <a href="#investing" className="hover:text-[#4ccfc1]">
               Investing
