@@ -1,9 +1,7 @@
 "use client";
 
-import { Metadata } from "next";
-import { useMemo, useCallback, useState } from "react";
+import { useMemo } from "react";
 import Image from "next/image";
-import useEmblaCarousel from "embla-carousel-react";
 import { motion } from "framer-motion";
 import {
   Accordion,
@@ -13,7 +11,9 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-
+import withCarousel, {
+  InjectedCarouselProps,
+} from "@/components/withCarousel";
 
 type Item = {
   id: number;
@@ -106,8 +106,7 @@ const DATA: Item[] = [
   },
 ];
 
-export default function ExplorePage() {
-  /* ---------------------------------- group --------------------------------- */
+function ExplorePage({ emblaRef, onPrev, onNext, selectedIndex }: InjectedCarouselProps) {
   const categories = useMemo(() => {
     const map = new Map<string, Item[]>();
     DATA.forEach((item) => {
@@ -117,18 +116,6 @@ export default function ExplorePage() {
     return [...map.entries()].map(([name, items]) => ({ name, items }));
   }, []);
 
-  /* ------------------------------- carousel ---------------------------------- */
-  const [emblaRef, embla] = useEmblaCarousel({ loop: true });
-  const [index, setIndex] = useState(0);
-
-  if (embla && embla.on) {
-    embla.on("select", () => setIndex(embla.selectedScrollSnap()));
-  }
-
-  const prev = useCallback(() => embla?.scrollPrev(), [embla]);
-  const next = useCallback(() => embla?.scrollNext(), [embla]);
-
-  /* ---------------------------------- UI ------------------------------------ */
   return (
     <main className="mx-auto max-w-6xl px-4 py-10">
       <motion.h1
@@ -146,18 +133,18 @@ export default function ExplorePage() {
           variant="outline"
           size="icon"
           aria-label="Previous category"
-          onClick={prev}
+          onClick={onPrev}
         >
           <ChevronLeft className="h-5 w-5" />
         </Button>
         <span className="sr-only">
-          {`Category ${index + 1} of ${categories.length}`}
+          {`Category ${selectedIndex + 1} of ${categories.length}`}
         </span>
         <Button
           variant="outline"
           size="icon"
           aria-label="Next category"
-          onClick={next}
+          onClick={onNext}
         >
           <ChevronRight className="h-5 w-5" />
         </Button>
@@ -203,3 +190,5 @@ export default function ExplorePage() {
     </main>
   );
 }
+
+export default withCarousel(ExplorePage);
