@@ -34,9 +34,9 @@ const Carousel = ({
   return (
     <section
       aria-labelledby="products-listing"
-      className="max-w-[100vw] mx-auto mt-8"
+      className="max-w-[100vw] mx-auto"
     >
-      <div className="flex justify-between items-center max-w-[400px] md:max-w-[600px] mx-auto px-4">
+      <div className="flex justify-between items-center max-w-[400px] md:max-w-[600px] mx-auto px-4 pt-8">
         <button
           className="bg-white/50 hover:bg-white p-2 rounded-full shadow-md z-10"
           onClick={scrollPrev}
@@ -56,7 +56,9 @@ const Carousel = ({
             />
           </svg>
         </button>
-        <h1 className="text-center text-xl font-bold">{heading}</h1>
+        <h1 className="text-center text-xl font-bold text-mint-glow">
+          {heading}
+        </h1>
         <button
           className="bg-white/50 hover:bg-white p-2 rounded-full shadow-md z-10"
           onClick={scrollNext}
@@ -78,7 +80,7 @@ const Carousel = ({
         </button>
       </div>
 
-      <div className="relative max-w-[100vw] mx-auto py-4 lg:px-4">
+      <div className="relative max-w-[100vw] xl:max-w-[1200px] mx-auto py-4">
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex -ml-4">
             {slides.map((slide, index) => {

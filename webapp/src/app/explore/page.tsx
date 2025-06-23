@@ -103,7 +103,7 @@ const ExplorePage = () => {
   );
 
   return (
-    <main>
+    <main className="bg-[url('/Texture_1290x898_clouds.png')] bg-cover bg-center bg-no-repeat min-h-screen">
       <Carousel slides={slides} heading="Explore Accounts" />
     </main>
   );
