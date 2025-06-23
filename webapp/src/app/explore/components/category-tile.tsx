@@ -15,20 +15,21 @@ const AnimatedAccordionContent: React.FC<{
   children: React.ReactNode;
 }> = ({ isOpen, children }) => {
   const ref = useRef<HTMLDivElement>(null);
-  const [height, setHeight] = useState("0px");
-  const [shouldAnimate, setShouldAnimate] = useState(false);
+  const [height, setHeight] = useState("0");
 
   useEffect(() => {
     if (isOpen && ref.current) {
-      setShouldAnimate(true);
       setHeight(ref.current.scrollHeight + "px");
-    } else {
-      setShouldAnimate(true);
-      setHeight("0px");
+    } else if (!isOpen && ref.current) {
+      if (height === "auto") {
+        setHeight(ref.current.scrollHeight + "px");
+        setTimeout(() => setHeight("0px"), 20);
+      } else {
+        setHeight("0");
+      }
     }
   }, [isOpen, children]);
 
-  // After expanding, set height to auto for responsiveness
   const handleTransitionEnd = () => {
     if (isOpen && ref.current) {
       setHeight("auto");
@@ -39,13 +40,7 @@ const AnimatedAccordionContent: React.FC<{
     <div
       ref={ref}
       className={styles.container}
-      style={{
-        height,
-        overflow: "hidden",
-        transition: shouldAnimate
-          ? "height 0.3s cubic-bezier(0.87, 0, 0.13, 1)"
-          : undefined,
-      }}
+      style={{ height }}
       onTransitionEnd={handleTransitionEnd}
     >
       {children}
@@ -56,7 +51,7 @@ const AnimatedAccordionContent: React.FC<{
 interface CategoryTileProps {
   category: string;
   products: Products;
-  isSelected?: boolean;
+  isSelected: boolean;
 }
 
 const CategoryTile: React.FC<CategoryTileProps> = ({
@@ -68,11 +63,7 @@ const CategoryTile: React.FC<CategoryTileProps> = ({
     <div className="border border-gray-200 rounded-lg px-4 bg-soft-blue">
       <h2 className="text-lg font-semibold text-center my-8">{category}</h2>
 
-      <Accordion
-        type="single"
-        collapsible
-        value={isSelected ? products.at(0)?.title : undefined}
-      >
+      <Accordion type="single" collapsible value={undefined}>
         <AnimatedAccordionContent isOpen={isSelected}>
           {products.map((item: any) => (
             <AccordionItem value={item.title} key={item.title}>
