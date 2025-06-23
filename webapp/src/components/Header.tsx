@@ -1,4 +1,6 @@
 "use client";
+import Link from "next/link";
+
 import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
 
@@ -7,12 +9,14 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full bg-white shadow-sm flex items-center justify-between px-6 py-3 relative">
       <div className="flex items-center gap-2">
-        <img
-          src="/MB-logo-400x92-1.svg"
-          alt="MoneyB Logo"
-          className="h-10 w-auto"
-          style={{ maxWidth: 160 }}
-        />
+        <Link href="/">
+          <img
+            src="/MB-logo-400x92-1.svg"
+            alt="MoneyB Logo"
+            className="h-10 w-auto"
+            style={{ maxWidth: 160 }}
+          />
+        </Link>
       </div>
       {/* Desktop Nav */}
       <nav className="hidden lg:flex gap-6 text-[16px] font-medium text-gray-700">
