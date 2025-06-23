@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Product from "../../components/product";
 
 interface Item {
   id: number;
@@ -40,7 +41,7 @@ const DATA: Item[] = [
     title: "32 day notice",
     icon: "/assets/32_day_notice.svg",
     description:
-      '<p>Save towards your short-term goals and earn 4.03% AER variable with a 32 Day Notice Savings Account.</p><p>Get started with as little as £1.</p><p>This account has a 32 day notice period. When you request a withdrawal, your money will be available after 32 days.</p>',
+      "<p>Save towards your short-term goals and earn 4.03% AER variable with a 32 Day Notice Savings Account.</p><p>Get started with as little as £1.</p><p>This account has a 32 day notice period. When you request a withdrawal, your money will be available after 32 days.</p>",
   },
   {
     id: 2,
@@ -48,7 +49,7 @@ const DATA: Item[] = [
     title: "95 day notice",
     icon: "/assets/95_day_notice.svg",
     description:
-      '<p>Save towards your short-term goals and earn 4.34% AER variable with a 95 Day Notice Savings Account.</p><p>Get started with as little as £1.</p><p>This account has a 95 day notice period. When you request a withdrawal, your money will be available after 95 days.</p>',
+      "<p>Save towards your short-term goals and earn 4.34% AER variable with a 95 Day Notice Savings Account.</p><p>Get started with as little as £1.</p><p>This account has a 95 day notice period. When you request a withdrawal, your money will be available after 95 days.</p>",
   },
   {
     id: 4,
@@ -56,7 +57,7 @@ const DATA: Item[] = [
     title: "General Investment Account",
     icon: "/assets/general_investment_account.svg",
     description:
-      '<p>Make your money work harder over the long term with a Moneybox investing account. Choose from three simple Starting Options, or customise your portfolio with top US stocks, funds, and ETFs.</p><p><strong>With a range of investing accounts, get started today with as little as £1.</strong></p><p>Capital at risk. All investing should be long term. The value of your investments can go up and down, and you may get back less than you invest.</p>',
+      "<p>Make your money work harder over the long term with a Moneybox investing account. Choose from three simple Starting Options, or customise your portfolio with top US stocks, funds, and ETFs.</p><p><strong>With a range of investing accounts, get started today with as little as £1.</strong></p><p>Capital at risk. All investing should be long term. The value of your investments can go up and down, and you may get back less than you invest.</p>",
   },
   {
     id: 10,
@@ -72,7 +73,7 @@ const DATA: Item[] = [
     title: "Junior ISA",
     icon: "/assets/junior_isa.svg",
     description:
-      '<p>Give your child a flying start and invest up to £9,000 per tax year into a Junior Stocks &amp; Shares ISA.</p><p><strong>Open or transfer an account in minutes and join over one million people saving and investing with Moneybox.</strong></p>',
+      "<p>Give your child a flying start and invest up to £9,000 per tax year into a Junior Stocks &amp; Shares ISA.</p><p><strong>Open or transfer an account in minutes and join over one million people saving and investing with Moneybox.</strong></p>",
   },
   {
     id: 8,
@@ -88,7 +89,7 @@ const DATA: Item[] = [
     title: "Lifetime ISA",
     icon: "/assets/lifetime_isa.svg",
     description:
-      '<p>Save or invest up to £4,000 each tax year with the UK’s biggest Lifetime ISA provider and get a 25% government bonus on all savings. That’s up to £1,000 for free each year you save for your first home.</p><p>Choose from a Cash Lifetime ISA or Stocks &amp; Shares Lifetime ISA (capital at risk).</p><p>A 25% government penalty applies if you withdraw money from a Lifetime ISA for any reason other than buying your first home (up to £450,000) or for retirement, and you may get back less than you paid into your Lifetime ISA.</p>',
+      "<p>Save or invest up to £4,000 each tax year with the UK’s biggest Lifetime ISA provider and get a 25% government bonus on all savings. That’s up to £1,000 for free each year you save for your first home.</p><p>Choose from a Cash Lifetime ISA or Stocks &amp; Shares Lifetime ISA (capital at risk).</p><p>A 25% government penalty applies if you withdraw money from a Lifetime ISA for any reason other than buying your first home (up to £450,000) or for retirement, and you may get back less than you paid into your Lifetime ISA.</p>",
   },
 ];
 
@@ -123,35 +124,7 @@ const ExplorePage = () => {
                 {category}
               </h2>
               {groupedData[category].map((item) => (
-                <article
-                  key={item.id}
-                  className="border border-gray-200 rounded-lg overflow-hidden"
-                >
-                  <div className="w-full text-left p-4 bg-gray-50">
-                    <span className="text-lg font-semibold text-gray-900">
-                      {item.title}
-                    </span>
-                  </div>
-                  <div
-                    id={`product-description-${item.id}`}
-                    className="p-4 bg-white"
-                  >
-                    <div className="flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-4">
-                      <div className="flex-shrink-0">
-                        <Image
-                          src={item.icon}
-                          alt={`${item.title} icon`}
-                          width={48}
-                          height={48}
-                        />
-                      </div>
-                      <div
-                        className="prose max-w-none"
-                        dangerouslySetInnerHTML={{ __html: item.description }}
-                      />
-                    </div>
-                  </div>
-                </article>
+                <Product key={item.id} item={item} />
               ))}
             </div>
           ))}
