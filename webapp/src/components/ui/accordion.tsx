@@ -18,7 +18,7 @@ function AccordionItem({
   return (
     <AccordionPrimitive.Item
       data-slot="accordion-item"
-      className="bg-green-50 p-4 mb-4"
+      className="rounded-lg bg-pure-white p-4 mb-4"
       {...props}
     />
   );
