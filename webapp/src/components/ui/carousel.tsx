@@ -4,7 +4,11 @@ import React from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { useCallback, useEffect, useState } from "react";
 
-const Carousel = ({ slides }: { slides: React.ReactElement[] }) => {
+const Carousel = ({
+  slides,
+}: {
+  slides: React.ReactElement<{ isSelected: boolean }>[];
+}) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     align: "center",

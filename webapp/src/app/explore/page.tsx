@@ -91,13 +91,16 @@ const apiResponse: Products = [
 
 const ExplorePage = () => {
   const categories = extractCategories(apiResponse);
-  const slides: React.ReactElement[] = categories.map((category) => (
-    <CategoryTile
-      key={category}
-      category={category}
-      products={getProductsByCategory(apiResponse, category)}
-    />
-  ));
+  const slides: React.ReactElement<{ isSelected: boolean }>[] = categories.map(
+    (category) => (
+      <CategoryTile
+        key={category}
+        category={category}
+        products={getProductsByCategory(apiResponse, category)}
+        isSelected={false}
+      />
+    )
+  );
 
   return (
     <main>
