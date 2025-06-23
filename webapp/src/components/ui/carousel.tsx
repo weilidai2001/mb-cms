@@ -1,9 +1,10 @@
 "use client";
 
+import React from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { useCallback, useEffect, useState } from "react";
 
-const Carousel = ({ slides }: { slides: React.ReactNode[] }) => {
+const Carousel = ({ slides }: { slides: React.ReactElement[] }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     align: "center",
@@ -28,14 +29,21 @@ const Carousel = ({ slides }: { slides: React.ReactNode[] }) => {
     <div className="relative max-w-4xl mx-auto p-4">
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex -ml-4">
-          {slides.map((slide, index) => (
-            <div
-              className={`relative min-w-0 flex-shrink-0 w-1/2 pl-4 ${index === selectedIndex ? 'ring-4 ring-blue-500 z-20' : ''}`}
-              key={index}
-            >
-              {slide}
-            </div>
-          ))}
+          {slides.map((slide, index) => {
+            const newSlide = React.cloneElement(slide, {
+              ...slide.props,
+              isSelected: index === selectedIndex,
+            });
+
+            return (
+              <div
+                className="relative min-w-0 flex-shrink-0 w-1/2 pl-4"
+                key={index}
+              >
+                {newSlide}
+              </div>
+            );
+          })}
         </div>
       </div>
       <button

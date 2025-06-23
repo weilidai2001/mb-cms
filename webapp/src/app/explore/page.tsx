@@ -1,7 +1,9 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
-import Product from "@/components/product";
-import CategoryTile from "@/components/category-tile";
+import Product from "@/app/explore/components/product";
+import CategoryTile from "@/app/explore/components/category-tile";
 import type { Products } from "@/lib/schemas/product-explore";
 import { extractCategories, getProductsByCategory } from "@/lib/products-util";
 import Carousel from "@/components/ui/carousel";
@@ -91,7 +93,7 @@ const apiResponse: Products = [
 
 const ExplorePage = () => {
   const categories = extractCategories(apiResponse);
-  const slides = categories.map((category) => (
+  const slides: React.ReactElement[] = categories.map((category) => (
     <CategoryTile
       key={category}
       category={category}
