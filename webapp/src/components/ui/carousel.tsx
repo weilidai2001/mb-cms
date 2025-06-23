@@ -31,9 +31,47 @@ const Carousel = ({
 
   return (
     <section aria-labelledby="products-listing" className="max-w-4xl mx-auto">
+      <button
+        className="bg-white/50 hover:bg-white p-2 rounded-full shadow-md z-10"
+        onClick={scrollPrev}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6 text-gray-700"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+      </button>
       <h2 id="products-listing" className="sr-only">
         Explore Accounts
       </h2>
+      <button
+        className="bg-white/50 hover:bg-white p-2 rounded-full shadow-md z-10"
+        onClick={scrollNext}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6 text-gray-700"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M9 5l7 7-7 7"
+          />
+        </svg>
+      </button>
       <div className="relative max-w-4xl mx-auto p-4">
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex -ml-4">
@@ -54,44 +92,6 @@ const Carousel = ({
             })}
           </div>
         </div>
-        <button
-          className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-white/50 hover:bg-white p-2 rounded-full shadow-md z-10"
-          onClick={scrollPrev}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 text-gray-700"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
-        </button>
-        <button
-          className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-white/50 hover:bg-white p-2 rounded-full shadow-md z-10"
-          onClick={scrollNext}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 text-gray-700"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
-        </button>
       </div>
     </section>
   );
