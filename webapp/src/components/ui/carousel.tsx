@@ -1,13 +1,25 @@
 "use client";
 
 import useEmblaCarousel from "embla-carousel-react";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const Carousel = ({ slides }: { slides: React.ReactNode[] }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     align: "center",
   });
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  // Update selectedIndex when slide changes
+  useEffect(() => {
+    if (!emblaApi) return;
+    const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
+    emblaApi.on("select", onSelect);
+    onSelect(); // set initially
+    return () => {
+      emblaApi.off("select", onSelect);
+    };
+  }, [emblaApi]);
 
   const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
   const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
@@ -18,7 +30,7 @@ const Carousel = ({ slides }: { slides: React.ReactNode[] }) => {
         <div className="flex -ml-4">
           {slides.map((slide, index) => (
             <div
-              className="relative min-w-0 flex-shrink-0 w-1/2 pl-4"
+              className={`relative min-w-0 flex-shrink-0 w-1/2 pl-4 ${index === selectedIndex ? 'ring-4 ring-blue-500 z-20' : ''}`}
               key={index}
             >
               {slide}
