@@ -15,16 +15,19 @@ interface CategoryTileProps {
 
 const CategoryTile: React.FC<CategoryTileProps> = ({ category, products }) => {
   return (
-    <Accordion type="single" collapsible defaultValue={products.at(0)?.title}>
-      {products.map((item: any) => (
-        <AccordionItem value={item.title}>
-          <AccordionTrigger>{item.title}</AccordionTrigger>
-          <AccordionContent>
-            <Product key={item.id} item={item} />
-          </AccordionContent>
-        </AccordionItem>
-      ))}
-    </Accordion>
+    <div className="border border-gray-200 rounded-lg px-4">
+      <h2 className="text-lg font-semibold text-center my-8">{category}</h2>
+      <Accordion type="single" collapsible defaultValue={products.at(0)?.title}>
+        {products.map((item: any) => (
+          <AccordionItem value={item.title} key={item.title}>
+            <AccordionTrigger>{item.title}</AccordionTrigger>
+            <AccordionContent>
+              <Product key={item.id} item={item} />
+            </AccordionContent>
+          </AccordionItem>
+        ))}
+      </Accordion>
+    </div>
   );
 };
 

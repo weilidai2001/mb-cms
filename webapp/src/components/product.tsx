@@ -11,12 +11,7 @@ interface ProductProps {
 
 const Product: React.FC<ProductProps> = ({ item }) => {
   return (
-    <article className="border border-gray-200 rounded-lg overflow-hidden">
-      <div className="w-full text-left p-4 bg-gray-50">
-        <span className="text-lg font-semibold text-gray-900">
-          {item.title}
-        </span>
-      </div>
+    <article>
       <div id={`product-description-${item.id}`} className="p-4 bg-white">
         <div className="flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-4">
           <div className="flex-shrink-0">
