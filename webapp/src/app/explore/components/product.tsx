@@ -1,4 +1,5 @@
 import Image from "next/image";
+import styles from "./product.module.css";
 
 interface ProductProps {
   item: {
@@ -23,7 +24,7 @@ const Product: React.FC<ProductProps> = ({ item }) => {
             />
           </div>
           <div
-            className="prose max-w-none"
+            className={styles.description}
             dangerouslySetInnerHTML={{ __html: item.description }}
           />
         </div>
