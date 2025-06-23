@@ -91,6 +91,13 @@ const apiResponse: Products = [
 
 const ExplorePage = () => {
   const categories = extractCategories(apiResponse);
+  const slides = categories.map((category) => (
+    <CategoryTile
+      key={category}
+      category={category}
+      products={getProductsByCategory(apiResponse, category)}
+    />
+  ));
 
   return (
     <main>
@@ -102,16 +109,7 @@ const ExplorePage = () => {
         <h2 id="products-heading" className="sr-only">
           All Products
         </h2>
-        <Carousel />
-        <div className="space-y-8">
-          {categories.map((category) => (
-            <CategoryTile
-              key={category}
-              category={category}
-              products={getProductsByCategory(apiResponse, category)}
-            />
-          ))}
-        </div>
+        <Carousel slides={slides} />
       </section>
     </main>
   );
