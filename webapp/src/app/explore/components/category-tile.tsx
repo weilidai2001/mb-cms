@@ -19,26 +19,26 @@ const CategoryTile: React.FC<CategoryTileProps> = ({
   products,
   isSelected,
 }) => {
-  console.log("isSelected", isSelected);
-  // debugger;
-
   return (
-    <div
-      className={`border border-gray-200 rounded-lg px-4 bg-soft-blue ${
-        isSelected ? "ring-4 ring-blue-500 z-20" : ""
-      }`}
-    >
+    <div className="border border-gray-200 rounded-lg px-4 bg-soft-blue">
       <h2 className="text-lg font-semibold text-center my-8">{category}</h2>
-      <Accordion type="single" collapsible defaultValue={products.at(0)?.title}>
-        {products.map((item: any) => (
-          <AccordionItem value={item.title} key={item.title}>
-            <AccordionTrigger>{item.title}</AccordionTrigger>
-            <AccordionContent>
-              <Product key={item.id} item={item} />
-            </AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
+
+      {isSelected && (
+        <Accordion
+          type="single"
+          collapsible
+          defaultValue={products.at(0)?.title}
+        >
+          {products.map((item: any) => (
+            <AccordionItem value={item.title} key={item.title}>
+              <AccordionTrigger>{item.title}</AccordionTrigger>
+              <AccordionContent>
+                <Product key={item.id} item={item} />
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      )}
     </div>
   );
 };

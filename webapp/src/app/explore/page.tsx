@@ -1,8 +1,6 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
-import Product from "@/app/explore/components/product";
 import CategoryTile from "@/app/explore/components/category-tile";
 import type { Products } from "@/lib/schemas/product-explore";
 import { extractCategories, getProductsByCategory } from "@/lib/products-util";
