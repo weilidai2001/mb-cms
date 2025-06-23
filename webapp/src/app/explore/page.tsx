@@ -4,6 +4,7 @@ import Product from "@/components/product";
 import CategoryTile from "@/components/category-tile";
 import type { Products } from "@/lib/schemas/product-explore";
 import { extractCategories, getProductsByCategory } from "@/lib/products-util";
+import Carousel from "@/components/ui/carousel";
 
 const apiResponse: Products = [
   {
@@ -101,6 +102,7 @@ const ExplorePage = () => {
         <h2 id="products-heading" className="sr-only">
           All Products
         </h2>
+        <Carousel />
         <div className="space-y-8">
           {categories.map((category) => (
             <CategoryTile
