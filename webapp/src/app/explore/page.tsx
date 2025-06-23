@@ -1,17 +1,10 @@
 import React from "react";
 import Image from "next/image";
-import Product from '@/components/product';
-import CategoryTile from '@/components/category-tile';
+import Product from "@/components/product";
+import CategoryTile from "@/components/category-tile";
+import type { Products } from "@/lib/schemas/product-explore";
 
-interface Item {
-  id: number;
-  category: string;
-  title: string;
-  icon: string;
-  description: string;
-}
-
-const DATA: Item[] = [
+const DATA: Products = [
   {
     id: 3,
     category: "Saving",
@@ -120,7 +113,11 @@ const ExplorePage = () => {
         </h2>
         <div className="space-y-8">
           {categories.map((category) => (
-            <CategoryTile key={category} category={category} groupedData={groupedData} />
+            <CategoryTile
+              key={category}
+              category={category}
+              products={groupedData}
+            />
           ))}
         </div>
       </section>
