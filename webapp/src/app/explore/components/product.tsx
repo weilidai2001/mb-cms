@@ -12,7 +12,7 @@ interface ProductProps {
 const Product: React.FC<ProductProps> = ({ item }) => {
   return (
     <article>
-      <div id={`product-description-${item.id}`} className="p-4">
+      <div id={`product-description-${item.id}`}>
         <div className="flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-4">
           <div className="flex-shrink-0">
             <Image
