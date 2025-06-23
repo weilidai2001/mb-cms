@@ -1,3 +1,5 @@
+"use client";
+
 import { Metadata } from "next";
 import { useMemo, useCallback, useState } from "react";
 import Image from "next/image";
@@ -12,12 +14,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "Explore Accounts | Moneybox",
-  description:
-    "Browse all Moneybox accounts by category—expand each product to learn how it can help you achieve your goals.",
-  alternates: { canonical: "/explore" },
-};
 
 type Item = {
   id: number;
