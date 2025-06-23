@@ -3,8 +3,9 @@ import Image from "next/image";
 import Product from "@/components/product";
 import CategoryTile from "@/components/category-tile";
 import type { Products } from "@/lib/schemas/product-explore";
+import { extractCategories, getProductsByCategory } from "@/lib/products-util";
 
-const DATA: Products = [
+const apiResponse: Products = [
   {
     id: 3,
     category: "Saving",
@@ -88,18 +89,7 @@ const DATA: Products = [
 ];
 
 const ExplorePage = () => {
-  const groupedData = DATA.reduce(
-    (acc: { [key: string]: Item[] }, item: Item) => {
-      if (!acc[item.category]) {
-        acc[item.category] = [];
-      }
-      acc[item.category].push(item);
-      return acc;
-    },
-    {}
-  );
-
-  const categories = Object.keys(groupedData);
+  const categories = extractCategories(apiResponse);
 
   return (
     <main>
@@ -116,7 +106,7 @@ const ExplorePage = () => {
             <CategoryTile
               key={category}
               category={category}
-              products={groupedData}
+              products={getProductsByCategory(apiResponse, category)}
             />
           ))}
         </div>

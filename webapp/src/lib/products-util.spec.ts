@@ -1,4 +1,4 @@
-import { extractCategories } from './products-util';
+import { extractCategories, getProductsByCategory } from './products-util';
 import type { Products } from './schemas/product-explore';
 
 describe('extractCategories', () => {
