@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import Product from "../../components/product";
+import Product from '@/components/product';
+import CategoryTile from '@/components/category-tile';
 
 interface Item {
   id: number;
@@ -119,14 +120,7 @@ const ExplorePage = () => {
         </h2>
         <div className="space-y-8">
           {categories.map((category) => (
-            <div key={category} className="space-y-4">
-              <h2 className="text-2xl font-bold text-gray-800 border-b pb-2 mb-4">
-                {category}
-              </h2>
-              {groupedData[category].map((item) => (
-                <Product key={item.id} item={item} />
-              ))}
-            </div>
+            <CategoryTile key={category} category={category} groupedData={groupedData} />
           ))}
         </div>
       </section>
