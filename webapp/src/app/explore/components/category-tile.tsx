@@ -10,7 +10,6 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@/components/ui/accordion";
-import styles from "./category-tile.module.css";
 
 interface CategoryTileProps {
   category: string;
@@ -44,7 +43,7 @@ const CategoryTile: React.FC<CategoryTileProps> = ({
               {products.map((item) => (
                 <AccordionItem value={item.title} key={item.title}>
                   <AccordionTrigger>{item.title}</AccordionTrigger>
-                  <AccordionContent className={styles.accordionContent}>
+                  <AccordionContent>
                     <Product key={item.id} item={item} />
                   </AccordionContent>
                 </AccordionItem>
