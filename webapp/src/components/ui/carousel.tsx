@@ -30,48 +30,54 @@ const Carousel = ({
   const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
 
   return (
-    <section aria-labelledby="products-listing" className="max-w-4xl mx-auto">
-      <button
-        className="bg-white/50 hover:bg-white p-2 rounded-full shadow-md z-10"
-        onClick={scrollPrev}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6 text-gray-700"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
+    <section
+      aria-labelledby="products-listing"
+      className="max-w-5xl mx-auto mt-8"
+    >
+      <div className="flex justify-between items-center max-w-[600px] mx-auto px-4">
+        <button
+          className="bg-white/50 hover:bg-white p-2 rounded-full shadow-md z-10"
+          onClick={scrollPrev}
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M15 19l-7-7 7-7"
-          />
-        </svg>
-      </button>
-      <h2 id="products-listing" className="sr-only">
-        Explore Accounts
-      </h2>
-      <button
-        className="bg-white/50 hover:bg-white p-2 rounded-full shadow-md z-10"
-        onClick={scrollNext}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6 text-gray-700"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 text-gray-700"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+        </button>
+        <header className="text-center">
+          <h1 className="text-xl font-bold">Explore Accounts</h1>
+        </header>
+        <button
+          className="bg-white/50 hover:bg-white p-2 rounded-full shadow-md z-10"
+          onClick={scrollNext}
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M9 5l7 7-7 7"
-          />
-        </svg>
-      </button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 text-gray-700"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </button>
+      </div>
+
       <div className="relative max-w-4xl mx-auto p-4">
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex -ml-4">

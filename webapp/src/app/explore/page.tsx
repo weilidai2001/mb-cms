@@ -104,10 +104,6 @@ const ExplorePage = () => {
 
   return (
     <main>
-      <header className="text-center my-8">
-        <h1 className="text-4xl font-bold">Explore Accounts</h1>
-      </header>
-
       <Carousel slides={slides} />
     </main>
   );
