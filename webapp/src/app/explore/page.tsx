@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 
 interface Item {
@@ -95,9 +93,6 @@ const DATA: Item[] = [
 ];
 
 const ExplorePage = () => {
-  const [activeCategory, setActiveCategory] = useState<string>("Saving");
-  const [openAccordion, setOpenAccordion] = useState<number | null>(null);
-
   const groupedData = DATA.reduce(
     (acc: { [key: string]: Item[] }, item: Item) => {
       if (!acc[item.category]) {
@@ -111,80 +106,54 @@ const ExplorePage = () => {
 
   const categories = Object.keys(groupedData);
 
-  const handleAccordion = (id: number) => {
-    setOpenAccordion(openAccordion === id ? null : id);
-  };
-
   return (
     <main>
       <header className="text-center my-8">
         <h1 className="text-4xl font-bold">Explore Accounts</h1>
       </header>
 
-      <nav className="my-8">
-        <h2 className="sr-only">Account Categories</h2>
-        <div className="flex justify-center">
-          {/* This is where a carousel would go. For now, it's a simple list. */}
-          <ul className="flex justify-center space-x-2 md:space-x-4">
-            {categories.map((category) => (
-              <li key={category}>
-                <button
-                  onClick={() => setActiveCategory(category)}
-                  className={`px-3 py-2 text-sm md:text-base md:px-4 rounded-lg transition-colors ${
-                    activeCategory === category
-                      ? "bg-gray-800 text-white"
-                      : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-                  }`}
-                >
-                  {category}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </nav>
-
       <section aria-labelledby="products-heading" className="max-w-4xl mx-auto">
         <h2 id="products-heading" className="sr-only">
-          Products in {activeCategory}
+          All Products
         </h2>
-        <div className="space-y-4">
-          {groupedData[activeCategory]?.map((item) => (
-            <article key={item.id} className="border border-gray-200 rounded-lg overflow-hidden">
-              <h3 className="sr-only">{item.title}</h3>
-              <button
-                onClick={() => handleAccordion(item.id)}
-                aria-expanded={openAccordion === item.id}
-                aria-controls={`product-description-${item.id}`}
-                className="w-full text-left p-4 flex justify-between items-center bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-500"
-              >
-                <span className="text-lg font-semibold text-gray-900">{item.title}</span>
-                <span className="transform transition-transform duration-200" style={{ transform: openAccordion === item.id ? 'rotate(180deg)' : 'rotate(0deg)' }}>
-                  <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-                </span>
-              </button>
-              {openAccordion === item.id && (
-                <div
-                  id={`product-description-${item.id}`}
-                  className="p-4 bg-white"
+        <div className="space-y-8">
+          {categories.map((category) => (
+            <div key={category} className="space-y-4">
+              <h2 className="text-2xl font-bold text-gray-800 border-b pb-2 mb-4">
+                {category}
+              </h2>
+              {groupedData[category].map((item) => (
+                <article
+                  key={item.id}
+                  className="border border-gray-200 rounded-lg overflow-hidden"
                 >
-                  <div className="flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-4">
-                    <div className="flex-shrink-0">
-                      <Image
-                        src={item.icon}
-                        alt="" // Decorative image
-                        width={48}
-                        height={48}
+                  <div className="w-full text-left p-4 bg-gray-50">
+                    <span className="text-lg font-semibold text-gray-900">
+                      {item.title}
+                    </span>
+                  </div>
+                  <div
+                    id={`product-description-${item.id}`}
+                    className="p-4 bg-white"
+                  >
+                    <div className="flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-4">
+                      <div className="flex-shrink-0">
+                        <Image
+                          src={item.icon}
+                          alt={`${item.title} icon`}
+                          width={48}
+                          height={48}
+                        />
+                      </div>
+                      <div
+                        className="prose max-w-none"
+                        dangerouslySetInnerHTML={{ __html: item.description }}
                       />
                     </div>
-                    <div
-                      className="prose max-w-none"
-                      dangerouslySetInnerHTML={{ __html: item.description }}
-                    />
                   </div>
-                </div>
-              )}
-            </article>
+                </article>
+              ))}
+            </div>
           ))}
         </div>
       </section>
