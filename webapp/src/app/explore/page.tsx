@@ -108,12 +108,7 @@ const ExplorePage = () => {
         <h1 className="text-4xl font-bold">Explore Accounts</h1>
       </header>
 
-      <section aria-labelledby="products-heading" className="max-w-4xl mx-auto">
-        <h2 id="products-heading" className="sr-only">
-          All Products
-        </h2>
-        <Carousel slides={slides} />
-      </section>
+      <Carousel slides={slides} />
     </main>
   );
 };
