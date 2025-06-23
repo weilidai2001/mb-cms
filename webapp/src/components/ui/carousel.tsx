@@ -5,8 +5,10 @@ import useEmblaCarousel from "embla-carousel-react";
 import { useCallback, useEffect, useState } from "react";
 
 const Carousel = ({
+  heading,
   slides,
 }: {
+  heading: string;
   slides: React.ReactElement<{ isSelected: boolean }>[];
 }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -54,9 +56,7 @@ const Carousel = ({
             />
           </svg>
         </button>
-        <header className="text-center">
-          <h1 className="text-xl font-bold">Explore Accounts</h1>
-        </header>
+        <h1 className="text-center text-xl font-bold">{heading}</h1>
         <button
           className="bg-white/50 hover:bg-white p-2 rounded-full shadow-md z-10"
           onClick={scrollNext}
@@ -82,17 +82,15 @@ const Carousel = ({
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex -ml-4">
             {slides.map((slide, index) => {
-              const newSlide = React.cloneElement(slide, {
-                ...slide.props,
-                isSelected: index === selectedIndex,
-              });
-
               return (
                 <div
                   className="relative min-w-0 flex-shrink-0 w-1/2 pl-4"
                   key={index}
                 >
-                  {newSlide}
+                  {React.cloneElement(slide, {
+                    ...slide.props,
+                    isSelected: index === selectedIndex,
+                  })}
                 </div>
               );
             })}

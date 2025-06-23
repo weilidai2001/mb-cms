@@ -104,7 +104,7 @@ const ExplorePage = () => {
 
   return (
     <main>
-      <Carousel slides={slides} />
+      <Carousel slides={slides} heading="Explore Accounts" />
     </main>
   );
 };
