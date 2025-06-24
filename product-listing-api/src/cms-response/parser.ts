@@ -10,29 +10,26 @@ export const formatDescription = (description: CmsDescription[]): string => {
 
   return description
     .map((block) => {
-      if (block.type === "list" && block.format === "unordered") {
-        const items = block.children
-          .map((item) => {
-            if (item.type === "list-item") {
-              // Join all text children for this list item
-              const text = item.children
-                .filter((child) => child.type === "text")
-                .map((child) => child.text)
-                .join(" ");
-              return `<li>${text}</li>`;
-            }
-            return "";
-          })
-          .join("");
-        return `<ul>${items}</ul>`;
-      }
       if (block.type === "paragraph") {
         // Join all text children for this paragraph
         const text = block.children
           .filter((child) => child.type === "text")
           .map((child) => child.text)
-          .join(" ");
+          .join("");
         return `<p>${text}</p>`;
+      } else if (block.type === "list") {
+        const listTag = block.format === "ordered" ? "ol" : "ul";
+        const listItems = block.children
+          .filter((child) => child.type === "list-item")
+          .map((listItem) => {
+            const text = listItem.children
+              .filter((child) => child.type === "text")
+              .map((child) => child.text)
+              .join("");
+            return `<li>${text}</li>`;
+          })
+          .join("");
+        return `<${listTag}>${listItems}</${listTag}>`;
       }
       return "";
     })
@@ -51,7 +48,7 @@ export const extractIconUrl = (
 };
 
 export const extractCategoryName = (product: CmsProduct): string => {
-  return product.category.name;
+  return product.category ? product.category.name : "";
 };
 
 export const extractProductData = (

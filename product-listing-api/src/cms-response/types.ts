@@ -18,29 +18,24 @@ export type CmsProduct = {
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
-  category: CmsCategory;
+  category: CmsCategory | null;
   icon: CmsIcon;
 };
 
-export type CmsDescription =
-  | {
-      type: "list";
-      format: "unordered";
-      children: CmsListItem[];
-    }
-  | {
-      type: "paragraph";
-      children: CmsText[];
-    };
-
-export type CmsListItem = {
-  type: "list-item";
-  children: CmsText[];
+export type CmsDescription = {
+  type: "paragraph" | "list";
+  format?: "unordered" | "ordered";
+  children: (CmsText | CmsListItem)[];
 };
 
 export type CmsText = {
   type: "text";
   text: string;
+};
+
+export type CmsListItem = {
+  type: "list-item";
+  children: CmsText[];
 };
 
 export type CmsCategory = {
