@@ -21,7 +21,14 @@ export const formatDescription = (description: CmsDescription[]): string => {
           .join('');
         return `<ul>${items}</ul>`;
       }
-      // Future: handle paragraphs if CmsDescription supports them
+      if (block.type === 'paragraph') {
+        // Join all text children for this paragraph
+        const text = block.children
+          .filter((child) => child.type === 'text')
+          .map((child) => child.text)
+          .join(' ');
+        return `<p>${text}</p>`;
+      }
       return '';
     })
     .join('');

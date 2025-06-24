@@ -22,11 +22,17 @@ export type CmsProduct = {
   icon: CmsIcon;
 };
 
-export type CmsDescription = {
-  type: "list";
-  format: "unordered";
-  children: CmsListItem[];
-};
+export type CmsDescription =
+  | {
+      type: "list";
+      format: "unordered";
+      children: CmsListItem[];
+    }
+  | {
+      type: "paragraph";
+      children: CmsText[];
+    };
+
 
 export type CmsListItem = {
   type: "list-item";

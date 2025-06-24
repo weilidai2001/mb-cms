@@ -1,5 +1,5 @@
 import { formatDescription } from "./parser";
-import type { CmsResponse } from "./types";
+import type { CmsDescription, CmsResponse } from "./types";
 
 const sampleResponse: CmsResponse = {
   data: [
@@ -195,11 +195,45 @@ describe("formatDescription", () => {
     expect(formatDescription(undefined as any)).toBe("");
   });
 
-  // Future test: paragraph support, if CmsDescription adds type: 'paragraph'
-  // it('should format paragraphs to <p>', () => {
-  //   const description = [
-  //     { type: 'paragraph', children: [{ type: 'text', text: 'Hello world.' }] }
-  //   ];
-  //   expect(formatDescription(description)).toBe('<p>Hello world.</p>');
-  // });
+  it("should format a single paragraph to <p>", () => {
+    const description: CmsDescription[] = [
+      { type: "paragraph", children: [{ type: "text", text: "Hello world." }] },
+    ];
+    expect(formatDescription(description)).toBe("<p>Hello world.</p>");
+  });
+
+  it("should format multiple paragraphs", () => {
+    const description: CmsDescription[] = [
+      { type: "paragraph", children: [{ type: "text", text: "Hello world." }] },
+      { type: "paragraph", children: [{ type: "text", text: "Second." }] },
+    ];
+    expect(formatDescription(description)).toBe(
+      "<p>Hello world.</p><p>Second.</p>"
+    );
+  });
+
+  it("should handle empty paragraph", () => {
+    const description: CmsDescription[] = [{ type: "paragraph", children: [] }];
+    expect(formatDescription(description)).toBe("<p></p>");
+  });
+
+  it("should handle paragraph with only whitespace", () => {
+    const description: CmsDescription[] = [
+      { type: "paragraph", children: [{ type: "text", text: "   " }] },
+    ];
+    expect(formatDescription(description)).toBe("<p>   </p>");
+  });
+
+  it("should handle paragraph with mixed children", () => {
+    const description: CmsDescription[] = [
+      {
+        type: "paragraph",
+        children: [
+          { type: "text", text: "Hello" },
+          { type: "text", text: "world." },
+        ],
+      },
+    ];
+    expect(formatDescription(description)).toBe("<p>Hello world.</p>");
+  });
 });
