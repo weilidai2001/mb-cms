@@ -49,7 +49,7 @@ This video shows when adding a product that contains a new category for the firs
 2. `npm install nvm -g` if not installed already.
 3. `nvm install` which will trigger the .nvmrc file to install the correct version of node.
 4. In one terminal tab, `cd webapp && npm install && npm run dev` which will start the Web App running locally.
-5. In another terminal tab, `cd product-listing-api && npm install && npm run dev` which will start the Product Listing API running locally.
+5. In another terminal tab, `cd product-listing-api && npm install && npm run start:real` which will start the Product Listing API running locally.
 6. In another terminal tab, `cd cms && npm install && npm run dev` which will start the Strapi CMS running locally
 
 ## Webapp
