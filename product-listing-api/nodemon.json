@@ -1,5 +1,5 @@
 {
   "watch": ["src"],
   "ext": "ts",
-  "exec": "ts-node src/server.ts"
+  "exec": "export PORT=3001 && export USE_MOCK_DATA=true && ts-node src/server.ts"
 }
