@@ -1,4 +1,4 @@
-import { formatDescription } from "./parser";
+import { formatDescription, extractTitle, extractIconUrl, extractCategoryName, extractProductData, extractProductsData } from "./parser";
 import type { CmsDescription, CmsResponse } from "./types";
 
 const sampleResponse: CmsResponse = {
@@ -175,6 +175,58 @@ const sampleResponse: CmsResponse = {
     },
   },
 };
+
+describe("extractTitle", () => {
+  it("should extract the title from a product", () => {
+    const product = sampleResponse.data[0];
+    const title = extractTitle(product);
+    expect(title).toBe("Cash ISA");
+  });
+});
+
+describe("extractIconUrl", () => {
+  it("should extract the icon URL from a product", () => {
+    const product = sampleResponse.data[0];
+    const iconUrl = extractIconUrl(product);
+    expect(iconUrl).toBe("/uploads/cash_isa_050dba2ac7.svg");
+  });
+});
+
+describe("extractCategoryName", () => {
+  it("should extract the category name from a product", () => {
+    const product = sampleResponse.data[0];
+    const categoryName = extractCategoryName(product);
+    expect(categoryName).toBe("Saving");
+  });
+});
+
+describe("extractProductData", () => {
+  it("should extract all required data from a product", () => {
+    const product = sampleResponse.data[0];
+    const productData = extractProductData(product);
+    expect(productData).toEqual({
+      id: 6,
+      category: "Saving",
+      title: "Cash ISA",
+      icon: "/uploads/cash_isa_050dba2ac7.svg",
+      description: "<ul>" +
+      "<li>Underlying rate of 3.95% AER (variable) with a 0.70% fixed 12 month bonus</li>" +
+      "<li>Save £20,000 a year with tax-free interest</li>" +
+      "<li>Minimum balance £500</li>" +
+      "<li>Up to 3 withdrawals every 12 months without impacting your rate</li>" +
+      "</ul>"
+    });
+  });
+});
+
+describe("extractProductsData", () => {
+  it("should extract data from all products in the CMS response", () => {
+    const productsData = extractProductsData(sampleResponse);
+    expect(productsData).toHaveLength(2);
+    expect(productsData[0].title).toBe("Cash ISA");
+    expect(productsData[1].title).toBe("Open Access Cash ISA");
+  });
+});
 
 describe("formatDescription", () => {
   it("should format an unordered list to HTML", () => {
