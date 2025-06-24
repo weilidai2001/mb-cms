@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon",
+    "start:mock": "export PORT=3001 && export USE_MOCK_DATA=true && nodemon",
+    "start:real": "export PORT=3001 && export USE_MOCK_DATA=false && export CMS_URL=http://localhost:1337 && nodemon",
     "test": "jest"
   },
   "keywords": [],
