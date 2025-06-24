@@ -1,10 +1,12 @@
 {
-  "name": "mock-server",
+  "name": "product-listing-api",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon"
+    "start:mock": "export PORT=3001 && export USE_MOCK_DATA=true && nodemon",
+    "start:real": "export PORT=3001 && export USE_MOCK_DATA=false && export CMS_URL=http://localhost:1337 && nodemon",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -15,8 +17,11 @@
   },
   "devDependencies": {
     "@types/express": "^5.0.3",
+    "@types/jest": "^30.0.0",
     "@types/node": "^24.0.3",
+    "jest": "^30.0.2",
     "nodemon": "^3.1.10",
+    "ts-jest": "^29.4.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   }
