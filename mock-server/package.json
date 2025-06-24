@@ -1,5 +1,5 @@
 {
-  "name": "mock-server",
+  "name": "product-listing-api",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",

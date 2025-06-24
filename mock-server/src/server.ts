@@ -95,5 +95,5 @@ app.get("/api/products", (_req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Mock server running at http://localhost:${port}`);
+  console.log(`product-listing-api server running at http://localhost:${port}`);
 });
