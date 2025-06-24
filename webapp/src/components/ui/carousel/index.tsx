@@ -3,6 +3,9 @@
 import React from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { useCallback, useEffect, useState } from "react";
+import ChevronRight from "./chevron-right";
+import ChevronLeft from "./chevron-left";
+import Button from "./button";
 
 const Carousel = ({
   heading,
@@ -37,47 +40,15 @@ const Carousel = ({
       className="max-w-[100vw] mx-auto"
     >
       <div className="flex justify-between items-center max-w-[400px] md:max-w-[600px] mx-auto px-4 pt-8">
-        <button
-          className="bg-white/50 hover:bg-white p-2 rounded-full shadow-md z-10"
-          onClick={scrollPrev}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 text-gray-700"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
-        </button>
+        <Button onClick={scrollPrev}>
+          <ChevronLeft />
+        </Button>
         <h1 className="text-center text-xl font-bold text-mint-glow">
           {heading}
         </h1>
-        <button
-          className="bg-white/50 hover:bg-white p-2 rounded-full shadow-md z-10"
-          onClick={scrollNext}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 text-gray-700"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
-        </button>
+        <Button onClick={scrollNext}>
+          <ChevronRight />
+        </Button>
       </div>
 
       <div className="relative max-w-[100vw] xl:max-w-[1200px] mx-auto py-4">
