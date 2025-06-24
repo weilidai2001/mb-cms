@@ -1,35 +1,70 @@
-import type { CmsDescription } from "./types";
+import type {
+  CmsDescription,
+  CmsProduct,
+  CmsResponse,
+  ExtractedProducts,
+} from "./types";
 
 export const formatDescription = (description: CmsDescription[]): string => {
-  if (!description || !Array.isArray(description)) return '';
+  if (!description || !Array.isArray(description)) return "";
 
   return description
     .map((block) => {
-      if (block.type === 'list' && block.format === 'unordered') {
+      if (block.type === "list" && block.format === "unordered") {
         const items = block.children
           .map((item) => {
-            if (item.type === 'list-item') {
+            if (item.type === "list-item") {
               // Join all text children for this list item
               const text = item.children
-                .filter((child) => child.type === 'text')
+                .filter((child) => child.type === "text")
                 .map((child) => child.text)
-                .join(' ');
+                .join(" ");
               return `<li>${text}</li>`;
             }
-            return '';
+            return "";
           })
-          .join('');
+          .join("");
         return `<ul>${items}</ul>`;
       }
-      if (block.type === 'paragraph') {
+      if (block.type === "paragraph") {
         // Join all text children for this paragraph
         const text = block.children
-          .filter((child) => child.type === 'text')
+          .filter((child) => child.type === "text")
           .map((child) => child.text)
-          .join(' ');
+          .join(" ");
         return `<p>${text}</p>`;
       }
-      return '';
+      return "";
     })
-    .join('');
+    .join("");
+};
+
+export const extractTitle = (product: CmsProduct): string => {
+  return product.title;
+};
+
+export const extractIconUrl = (product: CmsProduct): string => {
+  return product.icon.url;
+};
+
+export const extractCategoryName = (product: CmsProduct): string => {
+  return product.category.name;
+};
+
+export const extractProductData = (
+  product: CmsProduct
+): ExtractedProducts[number] => {
+  return {
+    id: product.id,
+    category: extractCategoryName(product),
+    title: extractTitle(product),
+    icon: extractIconUrl(product),
+    description: formatDescription(product.description),
+  };
+};
+
+export const extractProductsData = (
+  cmsResponse: CmsResponse
+): ExtractedProducts => {
+  return cmsResponse.data.map((product) => extractProductData(product));
 };

@@ -33,7 +33,6 @@ export type CmsDescription =
       children: CmsText[];
     };
 
-
 export type CmsListItem = {
   type: "list-item";
   children: CmsText[];
@@ -74,3 +73,11 @@ export type CmsIcon = {
   updatedAt: string;
   publishedAt: string;
 };
+
+export type ExtractedProducts = {
+  id: number;
+  category: string;
+  title: string;
+  icon: string;
+  description: string;
+}[];
