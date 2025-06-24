@@ -43,8 +43,11 @@ export const extractTitle = (product: CmsProduct): string => {
   return product.title;
 };
 
-export const extractIconUrl = (product: CmsProduct): string => {
-  return product.icon.url;
+export const extractIconUrl = (
+  product: CmsProduct,
+  baseUrl: string
+): string => {
+  return `${baseUrl}${product.icon.url}`;
 };
 
 export const extractCategoryName = (product: CmsProduct): string => {
@@ -52,19 +55,23 @@ export const extractCategoryName = (product: CmsProduct): string => {
 };
 
 export const extractProductData = (
-  product: CmsProduct
+  product: CmsProduct,
+  baseUrl: string
 ): ExtractedProducts[number] => {
   return {
     id: product.id,
     category: extractCategoryName(product),
     title: extractTitle(product),
-    icon: extractIconUrl(product),
+    icon: extractIconUrl(product, baseUrl),
     description: formatDescription(product.description),
   };
 };
 
 export const extractProductsData = (
-  cmsResponse: CmsResponse
+  cmsResponse: CmsResponse,
+  baseUrl: string
 ): ExtractedProducts => {
-  return cmsResponse.data.map((product) => extractProductData(product));
+  return cmsResponse.data.map((product) =>
+    extractProductData(product, baseUrl)
+  );
 };

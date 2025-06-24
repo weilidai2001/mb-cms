@@ -185,10 +185,11 @@ describe("extractTitle", () => {
 });
 
 describe("extractIconUrl", () => {
-  it("should extract the icon URL from a product", () => {
+  it("should extract the icon URL from a product with baseUrl", () => {
     const product = sampleResponse.data[0];
-    const iconUrl = extractIconUrl(product);
-    expect(iconUrl).toBe("/uploads/cash_isa_050dba2ac7.svg");
+    const baseUrl = "https://cms.example.com";
+    const iconUrl = extractIconUrl(product, baseUrl);
+    expect(iconUrl).toBe("https://cms.example.com/uploads/cash_isa_050dba2ac7.svg");
   });
 });
 
@@ -201,14 +202,15 @@ describe("extractCategoryName", () => {
 });
 
 describe("extractProductData", () => {
-  it("should extract all required data from a product", () => {
+  it("should extract all required data from a product with baseUrl", () => {
     const product = sampleResponse.data[0];
-    const productData = extractProductData(product);
+    const baseUrl = "https://cms.example.com";
+    const productData = extractProductData(product, baseUrl);
     expect(productData).toEqual({
       id: 6,
       category: "Saving",
       title: "Cash ISA",
-      icon: "/uploads/cash_isa_050dba2ac7.svg",
+      icon: "https://cms.example.com/uploads/cash_isa_050dba2ac7.svg",
       description: "<ul>" +
       "<li>Underlying rate of 3.95% AER (variable) with a 0.70% fixed 12 month bonus</li>" +
       "<li>Save £20,000 a year with tax-free interest</li>" +
@@ -220,11 +222,14 @@ describe("extractProductData", () => {
 });
 
 describe("extractProductsData", () => {
-  it("should extract data from all products in the CMS response", () => {
-    const productsData = extractProductsData(sampleResponse);
+  it("should extract data from all products in the CMS response with baseUrl", () => {
+    const baseUrl = "https://cms.example.com";
+    const productsData = extractProductsData(sampleResponse, baseUrl);
     expect(productsData).toHaveLength(2);
     expect(productsData[0].title).toBe("Cash ISA");
     expect(productsData[1].title).toBe("Open Access Cash ISA");
+    expect(productsData[0].icon).toContain(baseUrl);
+    expect(productsData[1].icon).toContain(baseUrl);
   });
 });
 

@@ -17,7 +17,7 @@ app.get("/api/products", async (_req, res) => {
       `${process.env.CMS_URL as string}${cmsEndpoint}`
     );
     const data = await response.json();
-    res.json(extractProductsData(data));
+    res.json(extractProductsData(data, process.env.CMS_URL as string));
   }
 });
 
