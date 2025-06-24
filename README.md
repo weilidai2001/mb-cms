@@ -54,11 +54,11 @@ This video shows when adding a product that contains a new category for the firs
 
 ## Webapp
 
-The Web App is viewable at http://localhost:3000/.
+The Web App is viewable at http://localhost:3000/. Tests can be run with `npm run test`.
 
 ## Product Listing API
 
-The Product Listing API is viewable at http://localhost:3001/api/products.
+The Product Listing API is viewable at http://localhost:3001/api/products. Tests can be run with `npm run test`.
 
 ## CMS
 
