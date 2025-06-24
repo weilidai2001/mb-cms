@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-mint-glow: #e9f8f7;
+  --color-pure-white: #ffffff;
+  --color-soft-blue: #e7eef9;
+  --color-primary-background: #78e3df;
+}
